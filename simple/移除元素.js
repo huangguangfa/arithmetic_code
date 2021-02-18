@@ -32,14 +32,30 @@
  * @param {number} val
  * @return {number}
  */
+// var removeElement = function(nums, val) {
+//     let leng = nums.length;
+//     for(let i=0; i < leng;i++){
+//         if(nums[i] === val){
+//             nums.splice(i,1);
+//             leng --;
+//             i--
+//         }
+//     }
+//     return leng;
+// };
+
 var removeElement = function(nums, val) {
+    let num = 0;
     let leng = nums.length;
-    for(let i=0; i < leng;i++){
-        if(nums[i] === val){
-            nums.splice(i,1);
+    while( num < leng ){
+        if( nums[num] === val ){
+            nums.splice(num,1);
             leng --;
-            i--
+            num--
         }
+        num ++;
     }
-    return leng;
+    return nums;
 };
+
+console.log(removeElement([3,2,2,3],3)) 

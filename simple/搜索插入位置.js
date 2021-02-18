@@ -21,18 +21,56 @@
  * @param {number} target
  * @return {number}
  */
-var searchInsert = function(nums, target) {
-    let val = null;
-    let leng = nums.length;
-    for(let i=0; i<leng; i++){
-        if( nums[i] === target ){
-            val = i; break;
-        }
-        if( nums[i] > target ){
-            val = i;
-            nums.splice(i,0,target);
-            break
-        }
+// 方案1
+// var searchInsert = function(nums, target) {
+//     let val = null;
+//     let leng = nums.length;
+//     for(let i=0; i<leng; i++){
+//         if( nums[i] === target ){
+//             val = i; break;
+//         }
+//         if( nums[i] > target ){
+//             val = i;
+//             nums.splice(i,0,target);
+//             break
+//         }
+//     }
+//     return val !== null ? val : leng;
+// };
+// // 方案2
+// var searchInsert = function(nums, target) {
+//     let val = null;
+//     let leng = nums.length;
+//     let sum = 0;
+//     while ( sum < leng ) {
+//         if( nums[sum] === target ) return val = sum;
+//         if( nums[sum] > target ){
+//             nums.splice(sum,0,target);
+//             return val = sum;
+//         }
+//         if(sum === leng - 1 && !val){ 
+//             nums.push(target) 
+//             return leng + 1;
+//         }
+//         sum ++
+//     }
+// };
+
+// 方案三
+var searchInsert = function(list, target, num=0) {
+    if( list[num] === target ) return num;
+    if( list[num] > target ){
+        list.splice(num,0,target);
+        return num;
     }
-    return val !== null ? val : leng;
+    if( num === list.length -1 ){
+        list.push(target) 
+        return list.length -1;
+    }
+    if( num < list.length){
+        return searchInsert(list,target,++num)
+    }
 };
+
+
+console.log( searchInsert( [1,3,5,6],7 ) )
